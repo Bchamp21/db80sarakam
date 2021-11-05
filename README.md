@@ -1,6 +1,6 @@
-# fwb80sarakam
+# db80sarakam
 
-[HerokulocalhostLink](https://fwb80sarakam.herokuapp.com/)
+[HerokulocalhostLink](https://db80sarakam.herokuapp.com/)
 
 Class Name : Winter
 
