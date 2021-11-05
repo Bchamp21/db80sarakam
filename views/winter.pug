@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  p Winter results
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let details = [
+                    {
+                        "wTemp":70,
+                        "wArea":"Maryville",
+                        "wMonth":"Sept"
+                    },
+                    {
+                        "wTemp":55,
+                        "wArea":"Kansas City",
+                        "wMonth":"Oct"
+                    },
+                    {
+                        "wTemp":40,
+                        "wArea":"St. Louis",
+                        "wMonth":"Nov"
+                    },                   
+                ]
+            each w,index in details
+                div(class="col-sm-2" onclick=`buy(${index})`) #{w.wTemp}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{w.wArea}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{w.wMonth}
+
+                script.                
+                      function buy(itemNo)
+                      {
+                            alert(`You portrayed winter spot ${itemNo+1}`)
+                      }
