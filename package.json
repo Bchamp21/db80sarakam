@@ -15,8 +15,12 @@
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },
+  "description": "webapps-f21-assignment-11-db80sarakam",
   "main": "app.js",
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "repository": {
+    "type": "git",
+    "url": "db80sarakam"
+  },
+  "author": "Bhuvan Chandra Sarakam",
+  "license": "ISC"
 }
