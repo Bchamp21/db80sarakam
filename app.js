@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var Gas = require("./models/gas");
 
 
 const connectionString = process.env.MONGO_CON
@@ -12,11 +13,55 @@ mongoose.connect(connectionString, {
   useUnifiedTopology: true
 });
 
+
+// server start
+async function recreateDB() {
+  // Delete everything
+  await Gas.deleteMany();
+  let instance1 = new
+  Gas({
+    gas_type: "regular",
+    quantity: 12,
+    cost: 38.24
+  });
+  let instance2 = new
+  Gas({
+    gas_type: "plus",
+    quantity: 8,
+    cost: 29.67
+  });
+  let instance3 = new
+  Gas({
+    gas_type: "v-power",
+    quantity: 16,
+    cost: 64.09
+  });  
+  instance1.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved")
+  });
+  instance2.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Second object saved")
+  });
+  instance3.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Third object saved")
+  });
+}
+
+let reseed = true;
+if (reseed) {
+  recreateDB();
+}
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var winterRouter = require('./routes/winter');
 var addmodsRouter = require('./routes/addmods');
-var selectorRouter = require('./routes/selector')
+var selectorRouter = require('./routes/selector');
+var gasRouter = require('./routes/gas');
 
 var app = express();
 
@@ -35,6 +80,7 @@ app.use('/users', usersRouter);
 app.use('/winter', winterRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/gas', gasRouter);
 
 
 // catch 404 and forward to error handler
