@@ -15,9 +15,9 @@ exports.winter_create_post = async function (req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"gas_type":"regular", "quantity":13, "cost":43.56}
-    document.wTemp = req.body.gas_type;
-    document.wArea = req.body.quantity;
-    document.wMonth = req.body.cost;
+    document.wTemp = req.body.wTemp;
+    document.wArea = req.body.wArea;
+    document.wMonth = req.body.wMonth;
     try {
         let result = await document.save();
         res.send(result);
@@ -32,7 +32,7 @@ exports.winter_delete = function (req, res) {
 };
 // Handle Winter update form on PUT.
 exports.winter_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: Gas update PUT' + req.params.id);
+    res.send('NOT IMPLEMENTED: Winter update PUT' + req.params.id);
 };
 
 // List of all Winter
