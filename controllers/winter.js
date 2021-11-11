@@ -1,14 +1,14 @@
-import winter, { find } from '../models/winter';
+var winter = require('../models/winter');
 // List of all Winter
-export function winter_list (req, res) {
+exports.winter_list = function (req, res) {
     res.send('NOT IMPLEMENTED: Winter list');
-}
+};
 // for a specific Winter.
-export function winter_detail (req, res) {
+exports.winter_detail = function (req, res) {
     res.send('NOT IMPLEMENTED: Winter detail: ' + req.params.id);
-}
+};
 // Handle Winter create on POST.
-export async function winter_create_post (req, res) {
+exports.winter_create_post = async function (req, res) {
     console.log(req.body)
     let document = new winter();
     // We are looking for a body, since POST does not have query parameters.
@@ -25,18 +25,18 @@ export async function winter_create_post (req, res) {
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
-}
+};
 // Handle Winter delete form on DELETE.
-export function winter_delete (req, res) {
+exports.winter_delete = function (req, res) {
     res.send('NOT IMPLEMENTED: Winter delete DELETE ' + req.params.id);
-}
+};
 // Handle Winter update form on PUT.
-export function winter_update_put (req, res) {
+exports.winter_update_put = function (req, res) {
     res.send('NOT IMPLEMENTED: Winter update PUT' + req.params.id);
-}
+};
 
 // List of all Winter
-export async function winter_list (req, res) {
+exports.winter_list = async function (req, res) {
     try {
         theWinter = await winter.find();
         res.send(theWinter);
@@ -44,13 +44,13 @@ export async function winter_list (req, res) {
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
-}
+};
 
 // VIEWS
 // Handle a show all view
-export async function winter_view_all_Page (req, res) {
+exports.winter_view_all_Page = async function (req, res) {
     try {
-        theWinter = await find();
+        theWinter = await winter.find();
         res.render('winter', {
             title: 'Winter Search Results',
             results: theWinter
@@ -59,4 +59,4 @@ export async function winter_view_all_Page (req, res) {
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
-}
+};
