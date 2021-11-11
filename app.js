@@ -63,6 +63,7 @@ var winterRouter = require('./routes/winter');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var winter = require('./models/winter');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -81,7 +82,7 @@ app.use('/users', usersRouter);
 app.use('/winter', winterRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
-
+app.use('/', resourceRouter);
 
 
 // catch 404 and forward to error handler
