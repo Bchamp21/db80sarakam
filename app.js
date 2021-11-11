@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var Gas = require("./models/gas");
+
 
 
 const connectionString = process.env.MONGO_CON
@@ -17,24 +17,24 @@ mongoose.connect(connectionString, {
 // server start
 async function recreateDB() {
   // Delete everything
-  await Gas.deleteMany();
+  await winter.deleteMany();
   let instance1 = new
-  Gas({
-    gas_type: "regular",
-    quantity: 12,
-    cost: 38.24
+  winter({
+    wTemp:70,
+    wArea:"Maryville",
+    wMonth:"Sept"
   });
   let instance2 = new
-  Gas({
-    gas_type: "plus",
-    quantity: 8,
-    cost: 29.67
+  winter({
+    wTemp:55,
+    wArea:"Kansas City",
+    wMonth:"Oct"
   });
   let instance3 = new
-  Gas({
-    gas_type: "v-power",
-    quantity: 16,
-    cost: 64.09
+  winter({
+    wTemp:40,
+    wArea:"St. Louis",
+    wMonth:"Nov"
   });  
   instance1.save(function (err, doc) {
     if (err) return console.error(err);
@@ -61,7 +61,7 @@ var usersRouter = require('./routes/users');
 var winterRouter = require('./routes/winter');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
-var gasRouter = require('./routes/gas');
+const winter = require('./models/winter');
 
 var app = express();
 
@@ -80,7 +80,7 @@ app.use('/users', usersRouter);
 app.use('/winter', winterRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
-app.use('/gas', gasRouter);
+
 
 
 // catch 404 and forward to error handler
