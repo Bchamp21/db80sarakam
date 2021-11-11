@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var winter = require("./models/winter");
 
 
 
@@ -61,7 +62,7 @@ var usersRouter = require('./routes/users');
 var winterRouter = require('./routes/winter');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
-const winter = require('./models/winter');
+var winter = require('./models/winter');
 
 var app = express();
 
