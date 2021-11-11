@@ -10,7 +10,7 @@ exports.winter_detail = function (req, res) {
 // Handle Winter create on POST.
 exports.winter_create_post = async function (req, res) {
     console.log(req.body)
-    let document = new Winter();
+    let document = new winter();
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
@@ -38,7 +38,7 @@ exports.winter_update_put = function (req, res) {
 // List of all Winter
 exports.winter_list = async function (req, res) {
     try {
-        theWinter = await Winter.find();
+        theWinter = await winter.find();
         res.send(theWinter);
     } catch (err) {
         res.status(500);
@@ -50,7 +50,7 @@ exports.winter_list = async function (req, res) {
 // Handle a show all view
 exports.winter_view_all_Page = async function (req, res) {
     try {
-        theGas = await Winter.find();
+        theWinter = await winter.find();
         res.render('winter', {
             title: 'Winter Search Results',
             results: theWinter
