@@ -70,19 +70,32 @@ exports.winter_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+// Handle a show one view with id specified by query
+exports.winter_view_one_Page = async function (req, res) {
+    console.log("single view for id " + req.query.id)
+    try {
+        result = await winter.findById(req.query.id)
+        res.render('winterdetail',
+            { title: 'Winter Detail', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
 
 
-// for a specific Costume.
-exports.winter_detail = async function(req, res) {
+// for a specific winter.
+exports.winter_detail = async function (req, res) {
     console.log("detail" + req.params.id)
     try {
-    result = await winter.findById( req.params.id)
-    res.send(result)
+        result = await winter.findById(req.params.id)
+        res.send(result)
     } catch (error) {
-    res.status(500)
-    res.send(`{"error": document for id ${req.params.id} not found`);
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
     }
-    };
+};
 
 // Handle Winter update form on PUT.
 exports.winter_update_put = async function(req, res) {
