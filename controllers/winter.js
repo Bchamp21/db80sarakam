@@ -96,6 +96,46 @@ exports.winter_detail = async function (req, res) {
         res.send(`{"error": document for id ${req.params.id} not found`);
     }
 };
+// Handle building the view for creating a winter.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.winter_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('wintercreate', { title: 'Winter Create' });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle building the view for updating a winter.
+// query provides the id
+exports.winter_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await winter.findById(req.query.id)
+    res.render('winterupdate', { title: 'Winter Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+// Handle a delete one view with id from query
+exports.winter_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await winter.findById(req.query.id)
+    res.render('winterdelete', { title: 'Winter Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
 
 // Handle Winter update form on PUT.
 exports.winter_update_put = async function(req, res) {

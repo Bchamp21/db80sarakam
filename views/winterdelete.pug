@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h1= title
+
+  if(toShow == null)
+    h2 No instance to delete
+  else
+    - let winterid = toShow._id
+    - let wTemp = toShow.wTemp
+    - let wArea = toShow.wArea
+    - let wMonth = toShow.wMonth
+    - let actionid = "/resource/winter/" + winterid
+    script let actionid = "#{actionid}"
+    div
+    div.row
+    div(class='winterAttr mr-3') Gas ID is: 
+      span(style="color:red") #{winterid}
+    div.row
+    div(class='winterAttr mr-3') Winter Temp is: 
+      span(style="color:red") #{wTemp}
+    div.row
+    div(class='winterAttr mr-3') Winter Area is: 
+      span(style="color:red") #{wArea}
+    div.row
+    div(class='winterAttr mr-3') Winter Month is: 
+      span(style="color:red") #{wMonth}
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+    // Go back to the home page for the winter collection
+    window.location.href='/winter'
+    }
+    function deleteOnid() {
+    console.log("starting delete")
+    // delete first
+    fetch(actionid, {
+    method: 'DELETE' // Don't need a body for the delete
+    }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+    alert("Delete succeded")
+    window.location.href='/winter'
+    // TODO handle body
+    }).catch((error) => {
+    // TODO handle error
+    alert("Delete failed " + error )
+    });
+    }

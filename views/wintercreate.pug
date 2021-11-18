@@ -1,0 +1,33 @@
+extends layout
+block content
+ h1= title
+
+ form(id='WinterForm', action="/resource/winter", method="POST")
+  div.form-group
+    label.winterAttr(for='wTemp') Winter temp
+    input#wTemp(type='text', name='wTemp')
+  div.form-group
+    label.winterAttr(for='wArea') Winter Area
+    input#wArea(type='text', name='wArea')
+  div.form-group
+    label.winterAttr(for='wMonth') Winter cost
+    input#wMonth(type='number', name='wMonth')
+  input(type="submit")
+
+  script.
+    document.forms['WinterForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+      alert("Save failed " + error )
+      });
+      });
