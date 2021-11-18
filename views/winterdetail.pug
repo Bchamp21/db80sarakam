@@ -1,20 +1,20 @@
 extends layout
 block content
-h1= title
-- let winterid = toShow._id
-- let winter_Temp = toShow.costume_wTemp
-- let winterArea = toShow.wArea
-- let winterMonth = toShow.wMonth
-div
-div.row
-div(class='winterAttr mr-3') Winter ID is:
-div #{winterid}
-div.row
-div(class='winterAttr mr-3') Winter Temp is:
-div #{winter_Temp}
-div.row
-div(class='winterAttr mr-3') Winter Area is:
-div #{winterArea}
-div.row
-div(class='winterAttr mr-3') Winter Month is:
-div #{winterMonth}
+  h1= title
+  - let winterid = toShow._id
+  - let winter_Temp = toShow.wTemp
+  - let winterArea = toShow.wArea
+  - let winterMonth = toShow.wMonth
+  div
+    div.row
+    div(class='winterAttr mr-3') Winter ID is:
+  div #{winterid}
+    div.row
+    div(class='winterAttr mr-3') Winter Temp is:
+  div #{winter_Temp}
+    div.row
+    div(class='winterAttr mr-3') Winter Area is:
+  div #{winterArea}
+    div.row
+    div(class='winterAttr mr-3') Winter Month is:
+  div #{winterMonth}
