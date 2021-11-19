@@ -6,7 +6,7 @@ block content
   div(class="container-fluid")
         div(class="row")
             -
-                let details = [
+                let items  = [
                     {
                         "wTemp":70,
                         "wArea":"Maryville",
@@ -23,13 +23,8 @@ block content
                         "wMonth":"Nov"
                     },                   
                 ]
-            each w,index in details
-                div(class="col-sm-2" onclick=`buy(${index})`) #{w.wTemp}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{w.wArea}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{w.wMonth}
-
-                script.                
-                      function buy(itemNo)
-                      {
-                            alert(`You portrayed winter spot ${itemNo+1}`)
-                      }
+            each item in items
+                - let destination = `dispatch(\"/winter/update?id=${item._id}\")`
+                div(class="row-sm-2", class="m-1") Item #{item.wTemp}(#{item.wArea}) is #{item.wMonth}
+                    button.btn( class="btn-primary ml-1", onclick= destination) Update
+               
