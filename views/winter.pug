@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+
   p Winter results
   div(class="container-fluid")
         div(class="row")
@@ -24,7 +25,5 @@ block content
                     },                   
                 ]
             each item in items
-                - let destination = `dispatch(\"/winter/update?id=${item._id}\")`
-                div(class="row-sm-2", class="m-1") Item #{item.wTemp}(#{item.wArea}) is #{item.wMonth}
-                    button.btn( class="btn-primary ml-1", onclick= destination) Update
-               
+              div(class="row-sm-2", class="m-1") Item #{item.wTemp}(#{item.wArea}) is #{item.wMonth}
+                button.btn( class="btn-primary ml-1", onclick= destination) Update
