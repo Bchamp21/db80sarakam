@@ -2,28 +2,19 @@ extends layout
 
 block content
   h1= title
+  - let items=results 
 
   p Winter results
   div(class="container-fluid")
         div(class="row")
-            -
-                let items  = [
-                    {
-                        "wTemp":70,
-                        "wArea":"Maryville",
-                        "wMonth":"Sept"
-                    },
-                    {
-                        "wTemp":55,
-                        "wArea":"Kansas City",
-                        "wMonth":"Oct"
-                    },
-                    {
-                        "wTemp":40,
-                        "wArea":"St. Louis",
-                        "wMonth":"Nov"
-                    },                   
-                ]
+            
             each item in items
+              - let destination = `dispatch(\"/winter/update?id=${item._id}\")`
               div(class="row-sm-2", class="m-1") Item #{item.wTemp}(#{item.wArea}) is #{item.wMonth}
                 button.btn( class="btn-primary ml-1", onclick= destination) Update
+                button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/winter/detail?id=${item._id}\")`) Detail 
+                button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/winter/delete?id=${item._id}\")`) Delete 
+  script.
+   function dispatch(path){
+    window.location.href=path
+   }
