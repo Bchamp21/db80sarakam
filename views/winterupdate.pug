@@ -2,41 +2,37 @@ extends layout
 
 block content
   h1= title
-
-  if(toShow == null)
-    h2 No instance to update
-  else
-    - let winterid = toShow._id
-    - let wTemp = toShow.wTemp
-    - let wArea = toShow.wArea
-    - let wMonth = toShow.wMonth
-    - let actionid = "/resource/winter/" + winterid
-    script let actionid = "#{actionid}"
-    div.row(class='mb-2')
-    div.mr-1 ID is 
-      span(style="color:red")  #{winterid}
-    form(id='WinterForm', action= actionid, method="PUT")
-      div.form-group
-      div(class="row g-3 align-items-center")
-        div(class="col-1")
-          label.winterAttr(for='wTemp',class="col-form-label") Winter temp
-        div(class="col-auto")
-          input#wTemp(type='text', name='wTemp',class="form-control", value=wTemp)
-      div.form-group
-      div(class="row g-3 align-items-center")
-        div(class="col-1")
-          label.winterAttr(for='wArea',class="col-form-label") Winter Area
-        div(class="col-auto")
-          input#wArea(type='text', name='wArea',class="form-control", value=wArea)
-      div.form-group
-      div(class="row g-3 align-items-center")
-        div(class="col-1")
-          label.winterAttr(for='wMonth',class="col-form-label") Winter Month
-        div(class="col-auto")
-          input#cost(type='text', name='wMonth',class="form-control", value=wMonth)
-      input(class="btn btn-danger m-2" type="submit")
+  - let winterid = toShow._id
+  - let wTemp = toShow.wTemp
+  - let wArea = toShow.wArea
+  - let wMonth = toShow.wMonth
+  - let actionid = "/resource/winter/" + winterid
+    
+  div.row(class='mb-2')
+   div.mr-1 ID is 
+   span(style="color:red")  #{winterid}
+  form(id='WinterForm', action= actionid, method="PUT")
+   div.form-group
+    div(class="row g-3 align-items-center")
+    div(class="col-1")
+      label.winterAttr(for='wTemp',class="col-form-label") Winter temp
+    div(class="col-auto")
+      input#wTemp(type='number', name='wTemp',class="form-control", value=wTemp, min="30",max="75")
+   div.form-group
+    div(class="row g-3 align-items-center")
+    div(class="col-1")
+     label.winterAttr(for='wArea',class="col-form-label") Winter Area
+    div(class="col-auto")
+     input#wArea(type='text', name='wArea',class="form-control", minlength="5", maxlength="12", value=wArea)
+   div.form-group
+    div(class="row g-3 align-items-center")
+    div(class="col-1")
+     label.winterAttr(for='wMonth',class="col-form-label") Winter Month
+    div(class="col-auto")
+     input#cost(type='text', name='wMonth',class="form-control", value=wMonth)
+     input(class="btn btn-danger m-2" type="submit")
         //- button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
-      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+     button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
         
   script.
     document.forms['WinterForm'].addEventListener('submit', (event) => {
